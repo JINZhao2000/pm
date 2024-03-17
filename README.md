@@ -5,7 +5,7 @@ In this project, we will develop an asynchronous processing system using FastAPI
 ## Dependencies
 - Applications
   - Python
-  - Docker compose
+  - Docker and Docker compose
 - Python packages
   - fastapi
   - pymysql
@@ -13,7 +13,9 @@ In this project, we will develop an asynchronous processing system using FastAPI
   - pydantic
   - aiohttp
   - uvicorn
-  - threading
+```bash
+pip install --no-cache-dir -r requirements.txt
+```
  
 ## Configurations
 - In the file `./pm/utils/utils.py`, you can find 4 variables to configure the hosts and ports for client and provider. They are `localhost` and `8000`, `8001` by default.
@@ -37,3 +39,23 @@ or
 python3 run.py
 ```
 to start
+
+
+## Build image
+Before build the image, change the host in `./pm/utils/utils.py` to docker ip address, `172.17.0.2` for instance.
+You can build docker image of this project with 
+```bash
+make build
+```
+or
+```bash
+docker build -t pm:v1 .
+```
+Then start the container
+```bash
+make docker-start 
+```
+or
+```bash
+docker run -it --publish=127.0.0.1:8000:8000 --publish=127.0.0.1:8001:8001 --name=pm pm:v1
+ ```

@@ -1,9 +1,11 @@
 import aiohttp
 import pika
 
-fhost = "localhost"
+fhost = "127.0.0.1"
+#fhost = "172.17.0.2"
 fport = 8000
-chost = "localhost"
+chost = "127.0.0.1"
+#chost = "172.17.0.2"
 cport = 8001
 
 
