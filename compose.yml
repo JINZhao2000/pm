@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "61613:61613"
+    environment:
+      RABBITMQ_DEFAULT_USER: 'pm'
+      RABBITMQ_DEFAULT_PASS: 'pm'
+    volumes:
+      - ./.mqdata:/var/lib/rabbitmq/
+    restart: unless-stopped
+
+networks:
+  rabbitmq:
+    driver: bridge
